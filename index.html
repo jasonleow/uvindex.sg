@@ -1,0 +1,950 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Primary Meta Tags -->
+  <title>UVIndex.SG 🇸🇬 – UV Index updates at a glance</title>
+  <meta name="title" content="UVIndex.SG 🇸🇬 – UV Index updates at a glance" />
+  <meta name="description" content="Quick updates at a glance on UV Index readings for sunny Singapore." />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://uvindex.sg/" />
+  <meta property="og:title" content="UVIndex.SG 🇸🇬 – UV Index updates at a glance" />
+  <meta property="og:description" content="Quick updates at a glance on UV Index readings for sunny Singapore." />
+  <meta property="og:image" content="https://i.postimg.cc/3R5qyQKW/uvindexsg-ogimage.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://uvindex.sg/" />
+  <meta property="twitter:title" content="UVIndex.SG 🇸🇬 – UV Index updates at a glance" />
+  <meta property="twitter:description" content="Quick updates at a glance on UV Index readings for sunny Singapore." />
+  <meta property="twitter:image" content="https://i.postimg.cc/3R5qyQKW/uvindexsg-ogimage.png" />
+
+  <!-- Mobile app icon -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="UVIndex.SG 🇸🇬">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://i.postimg.cc/nr4KgP5W/uvindexsg-touchicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/c4pkkNnh/uvindexsg-favicon-32px.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/c4pkkNnh/uvindexsg-favicon-32px.png">
+
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous" referrerpolicy="no-referrer" async />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" async />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src=""></script>
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      /*animation: fadeIn 1s ease-in-out;*/
+    }
+
+    #app {
+      /*height: 100%;
+			width: 100%;
+			top: 10%;
+			left: 10%;
+			position: absolute; */
+      margin-top: 5.5em;
+      text-align: center;
+      /* -ms-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%); */
+      padding: 10px;
+      /* font-display: swap means the browser will use a fallback font to render the text while the Font Awesome font is loading. This can help page speed by displaying the text sooner. */
+      font-display: swap;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-top: 0;
+    }
+
+    .no-bullets ul {
+      padding-left: 0;
+      list-style-type: none;
+    }
+
+    .slide-left {
+      -webkit-transform: translateX(-200%);
+      -moz-transform: translateX(-200%);
+      -ms-transform: translateX(-200%);
+      -o-transform: translateX(-200%);
+      transform: translateX(-200%);
+      -webkit-transition: transform 0.8s ease;
+      -moz-transition: transform 0.8s ease;
+      -ms-transition: transform 0.8s ease;
+      -o-transition: transform 0.8s ease;
+      transition: transform 0.8s ease;
+    }
+
+    .slide-right {
+      -webkit-transform: translateX(200%);
+      -moz-transform: translateX(200%);
+      -ms-transform: translateX(200%);
+      -o-transform: translateX(200%);
+      transform: translateX(200%);
+      -webkit-transition: transform 0.8s ease;
+      -moz-transition: transform 0.8s ease;
+      -ms-transition: transform 0.8s ease;
+      -o-transition: transform 0.8s ease;
+      transition: transform 0.8s ease;
+    }
+
+    .fade-in-right {
+      -webkit-animation: fadeInRight 0.8s ease-in-out;
+      -moz-animation: fadeInRight 0.8s ease-in-out;
+      -ms-animation: fadeInRight 0.8s ease-in-out;
+      -o-animation: fadeInRight 0.8s ease-in-out;
+      animation: fadeInRight 0.8s ease-in-out;
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(200%);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0%);
+      }
+    }
+
+    @-webkit-keyframes fadeInRight {
+      from {
+        opacity: 0;
+        -webkit-transform: translateX(200%);
+      }
+
+      to {
+        opacity: 1;
+        -webkit-transform: translateX(0%);
+      }
+    }
+
+    @-moz-keyframes fadeInRight {
+      from {
+        opacity: 0;
+        -moz-transform: translateX(200%);
+      }
+
+      to {
+        opacity: 1;
+        -moz-transform: translateX(0%);
+      }
+    }
+
+    @-ms-keyframes fadeInRight {
+      from {
+        opacity: 0;
+        -ms-transform: translateX(200%);
+      }
+
+      to {
+        opacity: 1;
+        -ms-transform: translateX(0%);
+      }
+    }
+
+    @-o-keyframes fadeInRight {
+      from {
+        opacity: 0;
+        -o-transform: translateX(200%);
+      }
+
+      to {
+        opacity: 1;
+        -o-transform: translateX(0%);
+      }
+    }
+
+    .fade-in-left {
+      -webkit-animation: fadeInLeft 0.8s ease-in-out;
+      -moz-animation: fadeInLeft 0.8s ease-in-out;
+      -ms-animation: fadeInLeft 0.8s ease-in-out;
+      -o-animation: fadeInLeft 0.8s ease-in-out;
+      animation: fadeInLeft 0.8s ease-in-out;
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-200%);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0%);
+      }
+    }
+
+    @-webkit-keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        -webkit-transform: translateX(-200%);
+      }
+
+      to {
+        opacity: 1;
+        -webkit-transform: translateX(0%);
+      }
+    }
+
+    @-moz-keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        -moz-transform: translateX(-200%);
+      }
+
+      to {
+        opacity: 1;
+        -moz-transform: translateX(0%);
+      }
+    }
+
+    @-ms-keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        -ms-transform: translateX(-200%);
+      }
+
+      to {
+        opacity: 1;
+        -ms-transform: translateX(0%);
+      }
+    }
+
+    @-o-keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        -o-transform: translateX(-200%);
+      }
+
+      to {
+        opacity: 1;
+        -o-transform: translateX(0%);
+      }
+    }
+
+    .fade-out-in {
+      -webkit-animation: fade 0.8s ease-in-out forwards;
+      -moz-animation: fade 0.8s ease-in-out forwards;
+      -ms-animation: fade 0.8s ease-in-out forwards;
+      -o-animation: fade 0.8s ease-in-out forwards;
+      animation: fade 0.8s ease-in-out forwards;
+    }
+
+    @keyframes fade {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @-webkit-keyframes fade {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @-moz-keyframes fade {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @-ms-keyframes fade {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @-o-keyframes fade {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .translation-bar {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 1em 1.5em 0 0;
+      margin: auto;
+      font-size: 0.8em;
+    }
+
+    .box {
+      background-color: #ffffff;
+      /*padding: 0.8em 2em 1.2em 2em;*/
+      padding: 0 0 1.2em 0;
+      line-height: 1.3;
+      border-radius: 5px;
+      color: #505050 !important;
+      max-width: 350px;
+      margin: auto;
+    }
+
+    .box ul li {
+      margin: 0 0 0.3em 0;
+    }
+
+    /* .box ul li span {
+			position: absolute;
+			margin: 5px 0 0 -9px;
+		} */
+    .box-header {
+      background-color: #505050;
+      border-radius: 5px 5px 0 0;
+      color: #fff;
+      /* display: flex;
+			align-items: center;
+			justify-content: space-between; 
+			position: relative; */
+      padding: 1.2em 2em 1.2em 2em;
+      box-shadow: 0 0.125em 0.25em rgba(10, 10, 10, .1);
+      margin-top: 0;
+    }
+
+    .time-box {
+      padding: 1em 2em;
+      border-radius: 5px;
+      max-width: 400px;
+      margin: 0 auto 0 auto;
+      font-size: 0.8em;
+    }
+
+    .time-box .box {
+      /*padding: 0.8em 2em 1.2em 2.5em;*/
+      max-width: 305px;
+    }
+
+    .psi-number,
+    .pm25-number {
+      font-size: 15rem;
+      font-weight: bold;
+    }
+
+    .info-text {
+      font-size: 1em;
+      font-weight: lighter;
+      padding: 0.6em 2em 0.5em 2em;
+      text-align: left;
+    }
+
+    .index-text {
+      font-size: 1.5em;
+      margin: 0 auto 1.5em auto;
+      max-width: 400px;
+    }
+
+    .footer {
+      font-size: 0.8em;
+      max-width: 400px;
+      text-align: center;
+      text-wrap: wrap;
+      margin: auto;
+    }
+
+    .green {
+      background-color: #579c00;
+      color: white;
+    }
+
+    .green .dot {
+      background-color: white;
+    }
+
+    .yellow {
+      background-color: #f8ce09;
+      color: black;
+    }
+
+    .yellow .dot {
+      background-color: black;
+    }
+
+    .orange {
+      background-color: #ff8400;
+      color: white;
+    }
+
+    .orange .dot {
+      background-color: white;
+    }
+
+    .red {
+      background-color: #d80000;
+      color: white;
+    }
+
+    .red .dot {
+      background-color: white;
+    }
+    
+    .purple {
+      background-color: #7031a1;
+      color: white;
+    }
+
+    .purple .dot {
+      background-color: white;
+    }
+
+    .grey {
+      background-color: #DDDDDD;
+      color: black;
+    }
+
+    .grey .dot {
+      background-color: black;
+    }
+
+    .lightgreen {
+      background-color: #48ffb0;
+      color: #505050;
+    }
+
+    .lightgreen .dot {
+      background-color: #505050;
+    }
+
+    .lightblue {
+      background-color: #34adfd;
+      color: white;
+    }
+
+    .lightblue .dot {
+      background-color: white;
+    }
+
+    .lightyellow {
+      background-color: #fff51b;
+      color: black;
+    }
+
+    .lightyellow .dot {
+      background-color: black;
+    }
+
+    .lightred {
+      background-color: #ff5643;
+      color: white;
+    }
+
+    .lightred .dot {
+      background-color: white;
+    }
+
+    .togglegroup {
+      margin: 0 auto 80px auto;
+      color: #505050;
+    }
+
+    .tag {
+      padding: 0.5em 1em;
+      margin: 0.25em 1em;
+      border-radius: 0.25em;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.7);
+      color: #505050;
+      box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+      font-size: 0.875em;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+    }
+
+    .region-tag {
+      padding: 0.25em 0.5em;
+      margin: 0.2em;
+      border-radius: 0.25em;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.7);
+      color: #505050;
+      cursor: pointer;
+      text-wrap: wrap;
+      display: inline-block;
+      width: 140px;
+    }
+
+    .refreshicon {
+      cursor: pointer;
+      position: absolute;
+      margin-top: -8px;
+    }
+
+    .dot {
+      height: 15px;
+      width: 15px;
+      /* background-color: #505050; */
+      border-radius: 50%;
+      display: inline-block;
+      margin: 0 5px 0 5px;
+      vertical-align: middle;
+      cursor: pointer;
+      opacity: 0.6;
+    }
+
+    .pulse-group {
+      position: relative;
+      bottom: 60px;
+      left: 0;
+      width: 400px;
+      margin: 0 auto 1em auto;
+    }
+
+    .pulse-circle {
+      position: absolute;
+      bottom: 31px;
+      left: 24px;
+      z-index: 998;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.4);
+      animation: pulse 8s ease-in-out forwards;
+    }
+
+    .pulse-hand {
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      /*width: 12%;*/
+      z-index: 999;
+      transform: rotate(45deg);
+      animation: show 8s ease-in-out forwards;
+      margin-bottom: 0px;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0;
+      }
+
+      49% {
+        transform: scale(1);
+        opacity: 0;
+      }
+
+      50% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+
+      55% {
+        transform: scale(1.3);
+        opacity: 0.3;
+      }
+
+      59% {
+        transform: scale(1.3);
+        opacity: 0;
+      }
+
+      60% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+
+      65% {
+        transform: scale(1.3);
+        opacity: 0.3;
+      }
+
+      69% {
+        transform: scale(1.3);
+        opacity: 0;
+      }
+
+      70% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+
+      75% {
+        transform: scale(1.3);
+        opacity: 0.3;
+      }
+
+      79% {
+        transform: scale(1.3);
+        opacity: 0;
+      }
+
+      80% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+
+      85% {
+        transform: scale(1.3);
+        opacity: 0.3;
+      }
+
+      89% {
+        transform: scale(1.3);
+        opacity: 0;
+      }
+
+      90% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+
+      95% {
+        transform: scale(1.3);
+        opacity: 0.3;
+      }
+
+      99% {
+        transform: scale(1.3);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 0;
+      }
+    }
+
+    @keyframes show {
+      0% {
+        opacity: 0;
+      }
+
+      49% {
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      99% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      #app {
+        margin-top: 4em;
+      }
+
+      .translation-bar {
+        font-size: 0.8em;
+      }
+
+      .box {
+        max-width: 310px;
+      }
+
+      .time-box .box {
+        /**/
+      }
+
+      .box ul li {
+        margin: 0 0 0.8em 0;
+      }
+
+      .psi-number,
+      .pm25-number {
+        font-size: 13rem;
+      }
+
+      .index-text {
+        font-size: 1.3em;
+      }
+
+      .region-tag {
+        padding: 0.25em 0.5em;
+        margin: 0.2em;
+        width: 130px;
+      }
+
+      .footer {
+        font-size: 0.8em;
+        max-width: 350px;
+      }
+
+      .pulse-group {
+        bottom: 50px;
+        left: -13px;
+        width: 350px;
+      }
+
+      .pulse-circle {
+        bottom: 30px;
+        left: 24px;
+        width: 30px;
+        height: 30px;
+      }
+
+      .pulse-hand {
+        bottom: 0px;
+        left: 0px;
+        /*width: 12%;*/
+        margin-bottom: 0px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="translationBar" class="translation-bar"><a href="https://psi-sg.translate.goog/?_x_tr_sl=en&_x_tr_tl=zh-CN&_x_tr_hl=en&_x_tr_pto=wapp" target="_blank" style="color: inherit !important">中文 |&nbsp;&nbsp;</a><a href="https://psi-sg.translate.goog/?_x_tr_sl=en&_x_tr_tl=ms&_x_tr_hl=en&_x_tr_pto=wapp" target="_blank" style="color: inherit !important">Bahasa melayu |&nbsp;&nbsp;</a><a href="https://psi-sg.translate.goog/?_x_tr_sl=en&_x_tr_tl=ta&_x_tr_hl=en&_x_tr_pto=wapp" target="_blank" style="color: inherit !important">தமிழ்</a></div>
+  <div id="app">
+    <div class="" style="text-align: center;">
+      <div style="font-size: 2em;; margin-left: -2em">UV Index<span class="refreshicon" @click="refresh">&nbsp; &#10227;&#xFE0E;</span></div>
+      <div class="pm25-number">{{ uvvalue }}</div>
+    </div>
+    <details class="no-bullets" style="margin-bottom: 1.2em;">
+      <summary class="time-box">Updated hourly at {{ uvtime }}.<br />Source: data.gov.sg <span style="display: inline-block; vertical-align: middle;"><svg :fill="getSvgFillColor(uvvalue)" width="13px" height="13px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+            <path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z" />
+          </svg></span></summary>
+      <div class="box">
+        <p class="box-header"><strong>What do the background colours for the UV Index mean?</strong></p>
+        <div class="info-text" style="text-align: left !important">
+          <ul>
+            <li><span style="color: #579c00;">&#x25FC;&#xFE0E;</span> Green: Low</li>
+            <li><span style="color: #f8ce09;">&#x25FC;&#xFE0E;</span> Yellow: Moderate</li>
+            <li><span style="color: #ff8400;">&#x25FC;&#xFE0E;</span> Orange: High</li>
+            <li><span style="color: #d80000;">&#x25FC;&#xFE0E;</span> Red: Very high</li>
+            <li><span style="color: #7031a1;">&#x25FC;&#xFE0E;</span> Purple: Extreme</li>
+          </ul>
+          <strong>Note:</strong> For more info, see the <a href="https://www.nea.gov.sg/corporate-functions/weather/ultraviolet-index" target="_blank">Ultraviolet Index page</a> on the official website of the National Environment Agency.<br /><br />Our data source is from the <a href="https://beta.data.gov.sg/collections/1420/datasets/d_076774d6843cc3369731f5abaef83d30/view" target="_blank">Ultraviolet Index (UVI) dataset</a> accessed from <a href="https://data.gov.sg/" target="_blank">data.gov.sg</a> which is made available under the terms of the <a href="https://beta.data.gov.sg/open-data-license" target="_blank">Singapore Open Data Licence version 1.0</a>.
+        </div>
+      </div>
+    </details>
+    <div class="box">
+      <p class="box-header"><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Health advisory: What you can do</strong></p>
+      <div class="info-text">{{ getUvAdvisory(uvvalue) }}</div>
+    </div>
+    <br />
+    <!-- <div class="box">
+					<p class="box-header"><strong><span style="display: inline-block; vertical-align: text-top;"><svg height="0.85em" width="0.8em" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#FFFFFF">
+									<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+									<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+									<g id="SVGRepo_iconCarrier">
+										<g>
+											<path class="st0" d="M256,0C114.616,0,0,114.612,0,256s114.616,256,256,256s256-114.612,256-256S397.385,0,256,0z M207.678,378.794 c0-17.612,14.281-31.893,31.893-31.893c17.599,0,31.88,14.281,31.88,31.893c0,17.595-14.281,31.884-31.88,31.884 C221.959,410.678,207.678,396.389,207.678,378.794z M343.625,218.852c-3.596,9.793-8.802,18.289-14.695,25.356 c-11.847,14.148-25.888,22.718-37.442,29.041c-7.719,4.174-14.533,7.389-18.769,9.769c-2.905,1.604-4.479,2.95-5.256,3.826 c-0.768,0.926-1.029,1.306-1.496,2.826c-0.273,1.009-0.558,2.612-0.558,5.091c0,6.868,0,12.512,0,12.512 c0,6.472-5.248,11.728-11.723,11.728h-28.252c-6.475,0-11.732-5.256-11.732-11.728c0,0,0-5.645,0-12.512 c0-6.438,0.752-12.744,2.405-18.777c1.636-6.008,4.215-11.718,7.508-16.694c6.599-10.083,15.542-16.802,23.984-21.48 c7.401-4.074,14.723-7.455,21.516-11.281c6.789-3.793,12.843-7.91,17.302-12.372c2.988-2.975,5.31-6.05,7.087-9.52 c2.335-4.628,3.955-10.067,3.992-18.389c0.012-2.463-0.698-5.702-2.632-9.405c-1.926-3.686-5.066-7.694-9.264-11.29 c-8.45-7.248-20.843-12.545-35.054-12.521c-16.285,0.058-27.186,3.876-35.587,8.62c-8.36,4.776-11.029,9.595-11.029,9.595 c-4.268,3.718-10.603,3.85-15.025,0.314l-21.71-17.397c-2.719-2.173-4.322-5.438-4.396-8.926c-0.063-3.479,1.425-6.81,4.061-9.099 c0,0,6.765-10.43,22.451-19.38c15.62-8.992,36.322-15.488,61.236-15.429c20.215,0,38.839,5.562,54.268,14.661 c15.434,9.148,27.897,21.744,35.851,36.876c5.281,10.074,8.525,21.43,8.533,33.38C349.211,198.042,347.248,209.058,343.625,218.852 z"></path>
+										</g>
+									</g>
+								</svg></span> How to use this reading:</strong></p>
+					<div class="info-text">Use the 1h PM2.5 readings to decide on <strong>immediate</strong> activities you're planning to do <strong>right now</strong>, like going for a jog.</div>
+				</div> -->
+
+    <br /><br />
+    ————————————————
+    <br /><br />
+    <div class="footer">
+      <p> &#9660;&#xFE0E; Made by <a href="https://buymeacoffee.com/jasonleowsg" style="color: inherit !important" target="_blank">@jasonleowsg</a>. For feedback/bug reports, <a href="https://forms.gle/xB2ifN9Bqk4fvq8MA" style="color: inherit !important" target="_blank">contact me here</a>. If you like this, please support more community projects by buying me a coffee. </p>
+      <br />
+      <a href="https://www.buymeacoffee.com/jasonleowsg" target="_blank" style="border-color: #eee !important;"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 42px !important;width: 150px !important"></a>
+    </div>
+    <br /><br /><br />
+    <details class="footer">
+      <summary>Add this web app to your phone's home screen! Here's how: <i class="fa fa-info-circle" aria-hidden="true"></i></summary>
+      <div class="box" style="margin-top: 1em; text-align: left !important; padding: 0.8em 2em 1.2em 2em;">
+        <p><strong>iOS</strong></p>
+        <ul>
+          <li>Open this site in Safari</li>
+          <li>Tap on Share button</li>
+          <li>Select Add to Home Screen</li>
+        </ul>
+
+        <p><strong>Android</strong></p>
+        <ul>
+          <li>Open this site in Chrome</li>
+          <li>Tap on the menu icon (3 dots in upper right-hand corner)</li>
+          <li>Tap Add to home screen</li>
+        </ul>
+      </div>
+    </details>
+    <br />
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.8/vue.min.js"></script>
+  <script async src="https://cdn.jsdelivr.net/npm/vue2-touch-events@3.2.3/index.min.js"></script>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        uvvalue: '',
+        uvtime: '',
+      },
+      created() {
+        this.fetchUvData();
+      },
+      mounted() {
+        this.changeBackgroundColor();
+        this.detectAppOpened();
+        this.getUvAdvisory();
+      },
+      updated() {},
+      methods: {
+        detectAppOpened() {
+          document.addEventListener("visibilitychange", () => {
+            if (document.visibilityState === "visible") {
+              location.reload(true);
+              console.log("location.reload");
+              //this.initialSetPm25BackgroundColor();
+            } else {
+              // The tab or window is now inactive
+            }
+          });
+        },
+        fetchUvData() {
+          // https://www.nea.gov.sg/api/ultraviolet/getall
+          fetch('https://api.data.gov.sg/v1/environment/uv-index')
+            .then(response => response.json())
+            .then(data => {
+              const items = data.items[0];
+              // console.log("uv items", items);
+              this.uvvalue = items.index[0].value;
+              //console.log("this.uvvalue", this.uvvalue)
+              this.uvtime = this.getLocaleTimestamp(items.index[0].timestamp)
+              //console.log("psi items.update_timestamp", items.update_timestamp)
+              //console.log("this.psitime", this.psitime)
+            })
+            .catch(error => {
+              console.error('Error fetching data:', error);
+              //this.psiApiDown = true;
+            });
+        },
+        getLocaleTimestamp(t) {
+          const localDate = new Date(t).toLocaleDateString("en-SG", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true
+          });
+          // console.log(localDate);
+          return localDate;
+        },
+        getUvAdvisory(value) {
+          if (value === '') {
+            return 'Health advisory not available.';
+          } else if (value === " ") {
+            return 'Health advisory not available.';
+          } else if (value <= 2 && value >= 0) {
+            return 'Wear sunglasses on bright days. If you burn easily, cover up and use broad spectrum SPF 15+ sunscreen. Bright surfaces, sand, water, will increase UV exposure.';
+          } else if (value <= 5) {
+            return 'Stay in shade near midday when the sun is strongest. If outdoors, wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 50+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, will increase UV exposure.';
+          } else if (value <= 7) {
+            return 'Reduce time in the sun between 10 a.m. and 4 p.m. If outdoors, seek shade and wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 50+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, will increase UV exposure.';
+          } else if (value <= 10) {
+            return 'Minimize sun exposure between 10 a.m. and 4 p.m. If outdoors, seek shade and wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 50+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, will increase UV exposure.';
+          } else if (value > 11) {
+            return 'Try to avoid sun exposure between 10 a.m. and 4 p.m. If outdoors, seek shade and wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 50+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, will increase UV exposure.';
+          } else {
+            return 'Health advisory not available.';
+          }
+          console.log('uv value', value)
+        },
+        getSvgFillColor(value) {
+          if (value === '') return '#000000';
+          else if (value === " ") return '#000000';
+          else if (value <= 2 && value >= 0) return '#505050';
+          else if (value <= 5) return '#FFFFFF';
+          else if (value <= 7) return '#000000';
+          else if (value <= 10) return '#000000';
+          else if (value > 11) return '#FFFFFF';
+          else return '#000000';
+        },
+        changeBackgroundColor() {
+          setTimeout(() => {
+            const body = document.body;
+            const value = this.uvvalue;
+            body.classList.remove('green', 'yellow', 'orange', 'red', 'purple', 'grey');
+            if (value === '') {
+              body.classList.add('grey');
+            } else if (value === " ") {
+              body.classList.add('grey');
+            } else if (value <= 2 && value >= 0) {
+              body.classList.add('green');
+            } else if (value <= 5) {
+              body.classList.add('yellow');
+            } else if (value <= 7) {
+              body.classList.add('orange');
+            } else if (value <= 10) {
+              body.classList.add('red');
+            } else if (value > 11) {
+              body.classList.add('purple');
+            } else {
+              body.classList.add('grey');
+            }
+          }, 1000); // delay has to be >500, ~800 otherwise bg of body will be wrong
+        },
+        getSvgFillColor(value) {
+					if (value === '') return '#000000';
+					else if (value === " ") return '#000000';
+					else if (value <= 50 && value >= 0) return '#FFFFFF';
+					else if (value <= 100) return '#FFFFFF';
+					else if (value <= 200) return '#000000';
+					else if (value <= 300) return '#FFFFFF';
+					else if (value > 300) return '#FFFFFF';
+					else return '#000000';
+				},
+        refresh() {
+          this.fetchUvData();
+          document.body.classList.add('fade-out-in')
+          setTimeout(function() {
+            document.body.classList.remove('fade-out-in')
+          }, 1000);
+        },
+      }
+    });
+
+  </script>
+</body>
