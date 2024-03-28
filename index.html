@@ -743,6 +743,7 @@
     <div class="" style="text-align: center;">
       <div style="font-size: 2em; margin-left: -2em;">UV Index<span class="refreshicon" @click="refresh">&nbsp; &#10227;&#xFE0E;</span></div>
       <div class="pm25-number">{{ uvvalue }}</div>
+      <div style="font-size: 1.5em; margin-bottom: 2em;">{{ getUvBand(uvvalue) }}</div>
     </div>
     <details class="no-bullets" style="margin-bottom: 1.2em;">
       <summary class="time-box">Updated hourly at {{ uvtime }}.<br />Source: data.gov.sg <span style="display: inline-block; vertical-align: middle;"><svg :fill="getSvgFillColor(uvvalue)" width="13px" height="13px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -871,6 +872,26 @@
           });
           // console.log(localDate);
           return localDate;
+        },
+        getUvBand(value) {
+          if (value === '') {
+            return 'UV Index exposure category not available.';
+          } else if (value === " ") {
+            return 'UV Index exposure category not available.';
+          } else if (value <= 2 && value >= 0) {
+            return 'Low';
+          } else if (value <= 5) {
+            return 'Moderate';
+          } else if (value <= 7) {
+            return 'High';
+          } else if (value <= 10) {
+            return 'Very high';
+          } else if (value > 11) {
+            return 'Extreme';
+          } else {
+            return 'UV Index exposure category not available.';
+          }
+          console.log('uv value', value)
         },
         getUvAdvisory(value) {
           if (value === '') {
