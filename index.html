@@ -422,7 +422,7 @@
     .red .dot {
       background-color: white;
     }
-    
+
     .purple {
       background-color: #7031a1;
       color: white;
@@ -738,7 +738,7 @@
 </head>
 
 <body>
-  <div id="translationBar" class="translation-bar"><a href="https://psi-sg.translate.goog/?_x_tr_sl=en&_x_tr_tl=zh-CN&_x_tr_hl=en&_x_tr_pto=wapp" target="_blank" style="color: inherit !important">中文 |&nbsp;&nbsp;</a><a href="https://psi-sg.translate.goog/?_x_tr_sl=en&_x_tr_tl=ms&_x_tr_hl=en&_x_tr_pto=wapp" target="_blank" style="color: inherit !important">Bahasa melayu |&nbsp;&nbsp;</a><a href="https://psi-sg.translate.goog/?_x_tr_sl=en&_x_tr_tl=ta&_x_tr_hl=en&_x_tr_pto=wapp" target="_blank" style="color: inherit !important">தமிழ்</a></div>
+  <div id="translationBar" class="translation-bar"><a href="https://uvindex-sg.translate.goog/?_x_tr_sl=en&_x_tr_tl=zh-CN&_x_tr_hl=en&_x_tr_pto=wapp" target="_blank" style="color: inherit !important">中文 |&nbsp;&nbsp;</a><a href="https://uvindex-sg.translate.goog/?_x_tr_sl=en&_x_tr_tl=ms&_x_tr_hl=en&_x_tr_pto=wapp" target="_blank" style="color: inherit !important">Bahasa melayu |&nbsp;&nbsp;</a><a href="https://uvindex-sg.translate.goog/?_x_tr_sl=en&_x_tr_tl=ta&_x_tr_hl=en&_x_tr_pto=wapp" target="_blank" style="color: inherit !important">தமிழ்</a></div>
   <div id="app">
     <div class="" style="text-align: center;">
       <div style="font-size: 2em;; margin-left: -2em">UV Index<span class="refreshicon" @click="refresh">&nbsp; &#10227;&#xFE0E;</span></div>
@@ -758,7 +758,7 @@
             <li><span style="color: #d80000;">&#x25FC;&#xFE0E;</span> Red: Very high</li>
             <li><span style="color: #7031a1;">&#x25FC;&#xFE0E;</span> Purple: Extreme</li>
           </ul>
-          <strong>Note:</strong> For more info, see the <a href="https://www.nea.gov.sg/corporate-functions/weather/ultraviolet-index" target="_blank">Ultraviolet Index page</a> on the official website of the National Environment Agency.<br /><br />Our data source is from the <a href="https://beta.data.gov.sg/collections/1420/datasets/d_076774d6843cc3369731f5abaef83d30/view" target="_blank">Ultraviolet Index (UVI) dataset</a> accessed from <a href="https://data.gov.sg/" target="_blank">data.gov.sg</a> which is made available under the terms of the <a href="https://beta.data.gov.sg/open-data-license" target="_blank">Singapore Open Data Licence version 1.0</a>.
+          <strong>Note:</strong> The UV Index is updated every hour between 7am and 7pm everyday. For more info, see the <a href="https://www.nea.gov.sg/corporate-functions/weather/ultraviolet-index" target="_blank">Ultraviolet Index page</a> on the official website of the National Environment Agency.<br /><br />Our data source is from the <a href="https://beta.data.gov.sg/collections/1420/datasets/d_076774d6843cc3369731f5abaef83d30/view" target="_blank">Ultraviolet Index (UVI) dataset</a> accessed from <a href="https://data.gov.sg/" target="_blank">data.gov.sg</a> which is made available under the terms of the <a href="https://beta.data.gov.sg/open-data-license" target="_blank">Singapore Open Data Licence version 1.0</a>.
         </div>
       </div>
     </details>
@@ -927,15 +927,15 @@
           }, 1000); // delay has to be >500, ~800 otherwise bg of body will be wrong
         },
         getSvgFillColor(value) {
-					if (value === '') return '#000000';
-					else if (value === " ") return '#000000';
-					else if (value <= 50 && value >= 0) return '#FFFFFF';
-					else if (value <= 100) return '#FFFFFF';
-					else if (value <= 200) return '#000000';
-					else if (value <= 300) return '#FFFFFF';
-					else if (value > 300) return '#FFFFFF';
-					else return '#000000';
-				},
+          if (value === '') return '#000000';
+          else if (value === " ") return '#000000';
+          else if (value <= 50 && value >= 0) return '#FFFFFF';
+          else if (value <= 100) return '#FFFFFF';
+          else if (value <= 200) return '#000000';
+          else if (value <= 300) return '#FFFFFF';
+          else if (value > 300) return '#FFFFFF';
+          else return '#000000';
+        },
         refresh() {
           this.fetchUvData();
           document.body.classList.add('fade-out-in')
