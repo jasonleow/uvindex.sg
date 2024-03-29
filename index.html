@@ -40,7 +40,7 @@
 
     <style>
       body {
-        font-family: 'Arial', sans-serif;
+        font-family: Arial, sans-serif;
         /*animation: fadeIn 1s ease-in-out;*/
       }
 
@@ -57,6 +57,10 @@
         padding: 10px;
         /* font-display: swap means the browser will use a fallback font to render the text while the Font Awesome font is loading. This can help page speed by displaying the text sooner. */
         font-display: swap;
+      }
+
+      [v-cloak] {
+        display: none;
       }
 
       ul {
@@ -376,7 +380,6 @@
 
       .info-text {
         font-size: 1em;
-        font-weight: lighter;
         padding: 0.6em 2em 0.5em 2em;
         text-align: left;
       }
@@ -825,7 +828,7 @@
 
   <body>
     <div id="translationBar" class="translation-bar"><a href="https://uvindex-sg.translate.goog/?_x_tr_sl=en&_x_tr_tl=zh-CN&_x_tr_hl=en&_x_tr_pto=wapp" target="_blank" style="color: inherit !important">中文 |&nbsp;&nbsp;</a><a href="https://uvindex-sg.translate.goog/?_x_tr_sl=en&_x_tr_tl=ms&_x_tr_hl=en&_x_tr_pto=wapp" target="_blank" style="color: inherit !important">Bahasa melayu |&nbsp;&nbsp;</a><a href="https://uvindex-sg.translate.goog/?_x_tr_sl=en&_x_tr_tl=ta&_x_tr_hl=en&_x_tr_pto=wapp" target="_blank" style="color: inherit !important">தமிழ்</a></div>
-    <div id="app">
+    <div id="app" v-show="showApp">
       <div class="" style="text-align: center;">
         <div class="header-title">UV Index<span class="refreshicon" @click="refresh">&nbsp; &#10227;&#xFE0E;</span></div>
         <div class="pm25-number">{{ uvvalue }}</div>
@@ -928,6 +931,8 @@
         data: {
           uvvalue: '',
           uvtime: '',
+          showApp: false,
+          uvApiDown: false,
         },
         created() {
           this.fetchUvData();
@@ -965,10 +970,11 @@
                 this.uvtime = this.getLocaleTimestamp(items.index[0].timestamp)
                 //console.log("psi items.update_timestamp", items.update_timestamp)
                 //console.log("this.psitime", this.psitime)
+                this.showApp = true
               })
               .catch(error => {
                 console.error('Error fetching data:', error);
-                //this.psiApiDown = true;
+                this.uvApiDown = true;
               });
           },
           getLocaleTimestamp(t) {
