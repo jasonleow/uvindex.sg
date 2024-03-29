@@ -769,7 +769,7 @@
             <li><span style="color: #d80000;">&#x25FC;&#xFE0E;</span> Red: Very high</li>
             <li><span style="color: #7031a1;">&#x25FC;&#xFE0E;</span> Purple: Extreme</li>
           </ul>
-          <strong>Note:</strong> The UV Index is updated every hour between 7am and 7pm everyday. For more info, see the <a href="https://www.nea.gov.sg/corporate-functions/weather/ultraviolet-index" target="_blank">Ultraviolet Index page</a> on the official website of the National Environment Agency.<br /><br />Our data source is from the <a href="https://beta.data.gov.sg/collections/1420/datasets/d_076774d6843cc3369731f5abaef83d30/view" target="_blank">Ultraviolet Index (UVI) dataset</a> accessed from <a href="https://data.gov.sg/" target="_blank">data.gov.sg</a> which is made available under the terms of the <a href="https://beta.data.gov.sg/open-data-license" target="_blank">Singapore Open Data Licence version 1.0</a>.
+          <strong>Note:</strong> The UV Index is updated every hour between 7am and 7pm everyday. Health advisory sources: <a href="https://www.epa.gov/sunsafety/uv-index-scale-0" target="_blank">EPA US</a> & <a href="https://en.wikipedia.org/wiki/Ultraviolet_index#Index_usage" target="_blank">Wikipedia</a>.<br /><br />For more info, see the <a href="https://www.nea.gov.sg/corporate-functions/weather/ultraviolet-index" target="_blank">Ultraviolet Index page</a> on the official website of the National Environment Agency.<br /><br />Our data source is from the <a href="https://beta.data.gov.sg/collections/1420/datasets/d_076774d6843cc3369731f5abaef83d30/view" target="_blank">Ultraviolet Index (UVI) dataset</a> accessed from <a href="https://data.gov.sg/" target="_blank">data.gov.sg</a> which is made available under the terms of the <a href="https://beta.data.gov.sg/open-data-license" target="_blank">Singapore Open Data Licence version 1.0</a>.
         </div>
       </div>
     </details>
@@ -861,6 +861,7 @@
               const items = data.items[0];
               // console.log("uv items", items);
               this.uvvalue = items.index[0].value;
+              // this.uvvalue = 11;
               //console.log("this.uvvalue", this.uvvalue)
               this.uvtime = this.getLocaleTimestamp(items.index[0].timestamp)
               //console.log("psi items.update_timestamp", items.update_timestamp)
@@ -896,7 +897,7 @@
             return 'High';
           } else if (value <= 10) {
             return 'Very high';
-          } else if (value > 11) {
+          } else if (value >= 11) {
             return 'Extreme';
           } else {
             return 'UV Index exposure category not available.';
@@ -909,14 +910,14 @@
           } else if (value === " ") {
             return 'Health advisory not available.';
           } else if (value <= 2 && value >= 0) {
-            return 'Wear sunglasses on bright days. If you burn easily, cover up and use broad spectrum SPF 15+ sunscreen. Bright surfaces, sand, water, will increase UV exposure.';
+            return 'No protection needed. You can safely stay outside using minimal sun protection. Wear sunglasses on bright days. If you burn easily, cover up and use broad spectrum SPF 15+ sunscreen. Bright surfaces, sand, water, will increase UV exposure.';
           } else if (value <= 5) {
             return 'Stay in shade near midday when the sun is strongest. If outdoors, wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 50+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, will increase UV exposure.';
           } else if (value <= 7) {
             return 'Reduce time in the sun between 10 a.m. and 4 p.m. If outdoors, seek shade and wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 50+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, will increase UV exposure.';
           } else if (value <= 10) {
             return 'Minimize sun exposure between 10 a.m. and 4 p.m. If outdoors, seek shade and wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 50+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, will increase UV exposure.';
-          } else if (value > 11) {
+          } else if (value >= 11) {
             return 'Try to avoid sun exposure between 10 a.m. and 4 p.m. If outdoors, seek shade and wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 50+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, will increase UV exposure.';
           } else {
             return 'Health advisory not available.';
@@ -926,11 +927,11 @@
         getSvgFillColor(value) {
           if (value === '') return '#000000';
           else if (value === " ") return '#000000';
-          else if (value <= 2 && value >= 0) return '#505050';
-          else if (value <= 5) return '#FFFFFF';
-          else if (value <= 7) return '#000000';
-          else if (value <= 10) return '#000000';
-          else if (value > 11) return '#FFFFFF';
+          else if (value <= 2 && value >= 0) return '#FFFFFF';
+          else if (value <= 5) return '#000000';
+          else if (value <= 7) return '#FFFFFF';
+          else if (value <= 10) return '#FFFFFF';
+          else if (value >= 11) return '#FFFFFF';
           else return '#000000';
         },
         changeBackgroundColor() {
@@ -950,22 +951,12 @@
               body.classList.add('orange');
             } else if (value <= 10) {
               body.classList.add('red');
-            } else if (value > 11) {
+            } else if (value >= 11) {
               body.classList.add('purple');
             } else {
               body.classList.add('grey');
             }
           }, 1000); // delay has to be >500, ~800 otherwise bg of body will be wrong
-        },
-        getSvgFillColor(value) {
-          if (value === '') return '#000000';
-          else if (value === " ") return '#000000';
-          else if (value <= 50 && value >= 0) return '#FFFFFF';
-          else if (value <= 100) return '#FFFFFF';
-          else if (value <= 200) return '#000000';
-          else if (value <= 300) return '#FFFFFF';
-          else if (value > 300) return '#FFFFFF';
-          else return '#000000';
         },
         refresh() {
           this.fetchUvData();
