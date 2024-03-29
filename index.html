@@ -381,6 +381,79 @@
         text-align: left;
       }
 
+      /*.progress {
+        width: 200px;
+        height: 18px;
+        position: relative;
+        border-radius: 8px;
+        margin: 1rem auto;
+        text-align: center;
+        border: 2px solid white;
+      }
+
+      .gradient-bk {
+        background: linear-gradient(to right, #579c00 0%, #f8ce09 24%, #ff8400 48%, #d80000 64%, #7031a1 88%, #7031a1 100%);
+      }
+
+      .progress .incomplete {
+        position: absolute;
+        width: 20%;
+        float: right;
+        background-color: white !important;
+        top: 0px;
+        right: -2px;
+        height: 18px;
+        border-top-right-radius: 7px;
+        border-bottom-right-radius: 7px;
+      }
+
+      .progress span {
+        color: black;
+        opacity: 0.5;
+        font-size: 0.8rem;
+        z-index: 2;
+      } */
+
+      .progress-container {
+        width: 300px;
+        height: 20px;
+        border: 2px solid #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+        margin: 1em auto;
+        background-color: #eee;
+      }
+
+      .progress-bar {
+        display: flex;
+        height: 100%;
+      }
+
+      .segment {
+        flex-basis: 8.33%;
+        /* 100% / 12 segments */
+        border-right: 2px solid #fff;
+        color: #505050;
+        font-size: 0.7em;
+        padding-top: 0.35em;
+        text-align: center;
+      }
+
+      .segment:last-child {
+        border-right: none;
+      }
+
+      .progress-value {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+      }
+
       .index-text {
         font-size: 1.5em;
         margin: 0 auto 1.5em auto;
@@ -756,7 +829,28 @@
       <div class="" style="text-align: center;">
         <div class="header-title">UV Index<span class="refreshicon" @click="refresh">&nbsp; &#10227;&#xFE0E;</span></div>
         <div class="pm25-number">{{ uvvalue }}</div>
-        <div style="font-size: 1.5em; margin-bottom: 2em;">{{ getUvBand(uvvalue) }}</div>
+        <div style="font-size: 2em; margin-bottom: 2em;">{{ getUvBand(uvvalue) }}</div>
+        <!-- <div class="progress gradient-bk">
+          <div class="incomplete" :style="{ width: setProgressBar(uvvalue) }"></div>
+          <span>{{ uvvalue }} / 11</span>
+        </div> -->
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div id="segment00" class="segment">0</div>
+            <div id="segment01" class="segment">1</div>
+            <div id="segment02" class="segment">2</div>
+            <div id="segment03" class="segment">3</div>
+            <div id="segment04" class="segment">4</div>
+            <div id="segment05" class="segment">5</div>
+            <div id="segment06" class="segment">6</div>
+            <div id="segment07" class="segment">7</div>
+            <div id="segment08" class="segment">8</div>
+            <div id="segment09" class="segment">9</div>
+            <div id="segment10" class="segment">10</div>
+            <div id="segment11" class="segment">11</div>
+          </div>
+          <!-- <div class="progress-value">{{ uvvalue }} / 11</div> -->
+        </div>
       </div>
       <details class="no-bullets" style="margin-bottom: 1.2em;">
         <summary class="time-box">Updated hourly at {{ uvtime }}.<br />Source: data.gov.sg <span style="display: inline-block; vertical-align: middle;"><svg :fill="getSvgFillColor(uvvalue)" width="13px" height="13px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -772,7 +866,7 @@
               <li><span style="color: #d80000;">&#x25FC;&#xFE0E;</span> 8 – 10: Very high 🔥😵</li>
               <li><span style="color: #7031a1;">&#x25FC;&#xFE0E;</span> Above 11: Extreme 👿💀</li>
             </ul>
-            <strong>Note:</strong> The UV Index is updated every hour between 7am and 7pm everyday. Health advisory sources: <a href="https://www.epa.gov/sunsafety/uv-index-scale-0" target="_blank">EPA US</a> & <a href="https://en.wikipedia.org/wiki/Ultraviolet_index#Index_usage" target="_blank">Wikipedia</a>.<br /><br />For more info, see the <a href="https://www.nea.gov.sg/corporate-functions/weather/ultraviolet-index" target="_blank">Ultraviolet Index page</a> on the official website of the National Environment Agency.<br /><br />Our data source is from the <a href="https://beta.data.gov.sg/collections/1420/datasets/d_076774d6843cc3369731f5abaef83d30/view" target="_blank">Ultraviolet Index (UVI) dataset</a> accessed from <a href="https://data.gov.sg/" target="_blank">data.gov.sg</a> which is made available under the terms of the <a href="https://beta.data.gov.sg/open-data-license" target="_blank">Singapore Open Data Licence version 1.0</a>.
+            <strong>Note:</strong> The UV Index is updated every hour between 7am and 7pm everyday. Health advisory sources: <a href="https://www.epa.gov/sunsafety/uv-index-scale-0" target="_blank">EPA US</a> & <a href="https://en.wikipedia.org/wiki/Ultraviolet_index#Index_usage" target="_blank">Wikipedia</a>. The emoji icons are our own addition for better UX.<br /><br />For more info, see the <a href="https://www.nea.gov.sg/corporate-functions/weather/ultraviolet-index" target="_blank">Ultraviolet Index page</a> on the official website of the National Environment Agency.<br /><br />Our data source is from the <a href="https://beta.data.gov.sg/collections/1420/datasets/d_076774d6843cc3369731f5abaef83d30/view" target="_blank">Ultraviolet Index (UVI) dataset</a> accessed from <a href="https://data.gov.sg/" target="_blank">data.gov.sg</a> which is made available under the terms of the <a href="https://beta.data.gov.sg/open-data-license" target="_blank">Singapore Open Data Licence version 1.0</a>.
           </div>
         </div>
       </details>
@@ -842,6 +936,8 @@
           this.changeBackgroundColor();
           this.detectAppOpened();
           this.getUvAdvisory();
+          //this.setProgressBar();
+          this.setProgressBarSegments();
         },
         updated() {},
         methods: {
@@ -864,7 +960,7 @@
                 const items = data.items[0];
                 // console.log("uv items", items);
                 this.uvvalue = items.index[0].value;
-                // this.uvvalue = 11;
+                //this.uvvalue = 12;
                 //console.log("this.uvvalue", this.uvvalue)
                 this.uvtime = this.getLocaleTimestamp(items.index[0].timestamp)
                 //console.log("psi items.update_timestamp", items.update_timestamp)
@@ -959,8 +1055,233 @@
               } else {
                 body.classList.add('grey');
               }
-            }, 1000); // delay has to be >500, ~800 otherwise bg of body will be wrong
+            }, 900); // delay has to be >500, ~800 otherwise bg of body will be wrong
           },
+          setProgressBarSegments() {
+            setTimeout(() => {
+              const value = this.uvvalue;
+              const segment00 = document.getElementById('segment00');
+              const segment01 = document.getElementById('segment01');
+              const segment02 = document.getElementById('segment02');
+              const segment03 = document.getElementById('segment03');
+              const segment04 = document.getElementById('segment04');
+              const segment05 = document.getElementById('segment05');
+              const segment06 = document.getElementById('segment06');
+              const segment07 = document.getElementById('segment07');
+              const segment08 = document.getElementById('segment08');
+              const segment09 = document.getElementById('segment09');
+              const segment10 = document.getElementById('segment10');
+              const segment11 = document.getElementById('segment11');
+              if (value === '') {
+                // nothing
+              } else if (value === " ") {
+                // nothing
+              } else if (value === 0) {
+                segment00.style.backgroundColor = '#579c00';
+                segment00.style.color = '#ffffff';
+              } else if (value === 1) {
+                segment00.style.backgroundColor = '#579c00';
+                segment00.style.color = '#ffffff';
+                segment01.style.backgroundColor = '#579c00';
+                segment01.style.color = '#ffffff';
+              } else if (value === 2) {
+                segment00.style.backgroundColor = '#579c00';
+                segment00.style.color = '#ffffff';
+                segment01.style.backgroundColor = '#579c00';
+                segment01.style.color = '#ffffff';
+                segment02.style.backgroundColor = '#579c00';
+                segment02.style.color = '#ffffff';
+              } else if (value === 3) {
+                segment00.style.backgroundColor = '#579c00';
+                segment00.style.color = '#ffffff';
+                segment01.style.backgroundColor = '#579c00';
+                segment01.style.color = '#ffffff';
+                segment02.style.backgroundColor = '#579c00';
+                segment02.style.color = '#ffffff';
+                segment03.style.backgroundColor = '#f8ce09';
+              } else if (value === 4) {
+                segment00.style.backgroundColor = '#579c00';
+                segment00.style.color = '#ffffff';
+                segment01.style.backgroundColor = '#579c00';
+                segment01.style.color = '#ffffff';
+                segment02.style.backgroundColor = '#579c00';
+                segment02.style.color = '#ffffff';
+                segment03.style.backgroundColor = '#f8ce09';
+                segment04.style.backgroundColor = '#f8ce09';
+              } else if (value === 5) {
+                segment00.style.backgroundColor = '#579c00';
+                segment00.style.color = '#ffffff';
+                segment01.style.backgroundColor = '#579c00';
+                segment01.style.color = '#ffffff';
+                segment02.style.backgroundColor = '#579c00';
+                segment02.style.color = '#ffffff';
+                segment03.style.backgroundColor = '#f8ce09';
+                segment04.style.backgroundColor = '#f8ce09';
+                segment05.style.backgroundColor = '#f8ce09';
+              } else if (value === 6) {
+                segment00.style.backgroundColor = '#579c00';
+                segment00.style.color = '#ffffff';
+                segment01.style.backgroundColor = '#579c00';
+                segment01.style.color = '#ffffff';
+                segment02.style.backgroundColor = '#579c00';
+                segment02.style.color = '#ffffff';
+                segment03.style.backgroundColor = '#f8ce09';
+                segment04.style.backgroundColor = '#f8ce09';
+                segment05.style.backgroundColor = '#f8ce09';
+                segment06.style.backgroundColor = '#ff8400';
+                segment06.style.color = '#ffffff';
+              } else if (value === 7) {
+                segment00.style.backgroundColor = '#579c00';
+                segment00.style.color = '#ffffff';
+                segment01.style.backgroundColor = '#579c00';
+                segment01.style.color = '#ffffff';
+                segment02.style.backgroundColor = '#579c00';
+                segment02.style.color = '#ffffff';
+                segment03.style.backgroundColor = '#f8ce09';
+                segment04.style.backgroundColor = '#f8ce09';
+                segment05.style.backgroundColor = '#f8ce09';
+                segment06.style.backgroundColor = '#ff8400';
+                segment06.style.color = '#ffffff';
+                segment07.style.backgroundColor = '#ff8400';
+                segment07.style.color = '#ffffff';
+              } else if (value === 8) {
+                segment00.style.backgroundColor = '#579c00';
+                segment00.style.color = '#ffffff';
+                segment01.style.backgroundColor = '#579c00';
+                segment01.style.color = '#ffffff';
+                segment02.style.backgroundColor = '#579c00';
+                segment02.style.color = '#ffffff';
+                segment03.style.backgroundColor = '#f8ce09';
+                segment04.style.backgroundColor = '#f8ce09';
+                segment05.style.backgroundColor = '#f8ce09';
+                segment06.style.backgroundColor = '#ff8400';
+                segment06.style.color = '#ffffff';
+                segment07.style.backgroundColor = '#ff8400';
+                segment07.style.color = '#ffffff';
+                segment08.style.backgroundColor = '#d80000';
+                segment08.style.color = '#ffffff';
+              } else if (value === 9) {
+                segment00.style.backgroundColor = '#579c00';
+                segment00.style.color = '#ffffff';
+                segment01.style.backgroundColor = '#579c00';
+                segment01.style.color = '#ffffff';
+                segment02.style.backgroundColor = '#579c00';
+                segment02.style.color = '#ffffff';
+                segment03.style.backgroundColor = '#f8ce09';
+                segment04.style.backgroundColor = '#f8ce09';
+                segment05.style.backgroundColor = '#f8ce09';
+                segment06.style.backgroundColor = '#ff8400';
+                segment06.style.color = '#ffffff';
+                segment07.style.backgroundColor = '#ff8400';
+                segment07.style.color = '#ffffff';
+                segment08.style.backgroundColor = '#d80000';
+                segment08.style.color = '#ffffff';
+                segment09.style.backgroundColor = '#d80000';
+                segment09.style.color = '#ffffff';
+              } else if (value === 10) {
+                segment00.style.backgroundColor = '#579c00';
+                segment00.style.color = '#ffffff';
+                segment01.style.backgroundColor = '#579c00';
+                segment01.style.color = '#ffffff';
+                segment02.style.backgroundColor = '#579c00';
+                segment02.style.color = '#ffffff';
+                segment03.style.backgroundColor = '#f8ce09';
+                segment04.style.backgroundColor = '#f8ce09';
+                segment05.style.backgroundColor = '#f8ce09';
+                segment06.style.backgroundColor = '#ff8400';
+                segment06.style.color = '#ffffff';
+                segment07.style.backgroundColor = '#ff8400';
+                segment07.style.color = '#ffffff';
+                segment08.style.backgroundColor = '#d80000';
+                segment08.style.color = '#ffffff';
+                segment09.style.backgroundColor = '#d80000';
+                segment09.style.color = '#ffffff';
+                segment10.style.backgroundColor = '#d80000';
+                segment10.style.color = '#ffffff';
+              } else if (value === 11) {
+                segment00.style.backgroundColor = '#579c00';
+                segment00.style.color = '#ffffff';
+                segment01.style.backgroundColor = '#579c00';
+                segment01.style.color = '#ffffff';
+                segment02.style.backgroundColor = '#579c00';
+                segment02.style.color = '#ffffff';
+                segment03.style.backgroundColor = '#f8ce09';
+                segment04.style.backgroundColor = '#f8ce09';
+                segment05.style.backgroundColor = '#f8ce09';
+                segment06.style.backgroundColor = '#ff8400';
+                segment06.style.color = '#ffffff';
+                segment07.style.backgroundColor = '#ff8400';
+                segment07.style.color = '#ffffff';
+                segment08.style.backgroundColor = '#d80000';
+                segment08.style.color = '#ffffff';
+                segment09.style.backgroundColor = '#d80000';
+                segment09.style.color = '#ffffff';
+                segment10.style.backgroundColor = '#d80000';
+                segment10.style.color = '#ffffff';
+                segment11.style.backgroundColor = '#7031a1';
+                segment11.style.color = '#ffffff';
+              } else if (value > 11) {
+                segment00.style.backgroundColor = '#579c00';
+                segment00.style.color = '#ffffff';
+                segment01.style.backgroundColor = '#579c00';
+                segment01.style.color = '#ffffff';
+                segment02.style.backgroundColor = '#579c00';
+                segment02.style.color = '#ffffff';
+                segment03.style.backgroundColor = '#f8ce09';
+                segment04.style.backgroundColor = '#f8ce09';
+                segment05.style.backgroundColor = '#f8ce09';
+                segment06.style.backgroundColor = '#ff8400';
+                segment06.style.color = '#ffffff';
+                segment07.style.backgroundColor = '#ff8400';
+                segment07.style.color = '#ffffff';
+                segment08.style.backgroundColor = '#d80000';
+                segment08.style.color = '#ffffff';
+                segment09.style.backgroundColor = '#d80000';
+                segment09.style.color = '#ffffff';
+                segment10.style.backgroundColor = '#d80000';
+                segment10.style.color = '#ffffff';
+                segment11.style.backgroundColor = '#7031a1';
+                segment11.style.color = '#ffffff';
+              } else {
+                // nothing
+              }
+            }, 900); // delay has to be >500, ~800 otherwise bg of body will be wrong
+          },
+          /*setProgressBar(value) {
+            if (value === '') {
+              return null;
+            } else if (value === " ") {
+              return null;
+            } else if (value === 0) {
+              return '92%';
+            } else if (value === 1) {
+              return '84%';
+            } else if (value === 2) {
+              return '76%';
+            } else if (value === 3) {
+              return '68%';
+            } else if (value === 4) {
+              return '60%';
+            } else if (value === 5) {
+              return '52%';
+            } else if (value === 6) {
+              return '44%';
+            } else if (value === 7) {
+              return '36%';
+            } else if (value === 8) {
+              return '28%';
+            } else if (value === 9) {
+              return '20%';
+            } else if (value === 10) {
+              return '12%';
+            } else if (value === 11) {
+              return '0%';
+            } else if (value > 11) {
+              return '0%';
+            } else {
+              return null;
+            }
+          }, */
           refresh() {
             this.fetchUvData();
             document.body.classList.add('fade-out-in')
