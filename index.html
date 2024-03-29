@@ -32,8 +32,8 @@
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous" referrerpolicy="no-referrer" async />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" async />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src=""></script>
+  <!-- Beam Analytics tag -->
+  <script src="https://beamanalytics.b-cdn.net/beam.min.js" data-token="1f1e1ed4-f781-4451-8170-afa03221d6ab" async></script>
 
   <style>
     body {
@@ -313,6 +313,11 @@
       padding: 1em 1.5em 0 0;
       margin: auto;
       font-size: 0.8em;
+    }
+
+    .header-title {
+      font-size: 2em;
+      margin-left: -2em;
     }
 
     .box {
@@ -681,6 +686,11 @@
         font-size: 0.8em;
       }
 
+      .header-title {
+        font-size: 2em;
+        margin-left: 0;
+      }
+
       .box {
         max-width: 310px;
       }
@@ -741,7 +751,7 @@
   <div id="translationBar" class="translation-bar"><a href="https://uvindex-sg.translate.goog/?_x_tr_sl=en&_x_tr_tl=zh-CN&_x_tr_hl=en&_x_tr_pto=wapp" target="_blank" style="color: inherit !important">中文 |&nbsp;&nbsp;</a><a href="https://uvindex-sg.translate.goog/?_x_tr_sl=en&_x_tr_tl=ms&_x_tr_hl=en&_x_tr_pto=wapp" target="_blank" style="color: inherit !important">Bahasa melayu |&nbsp;&nbsp;</a><a href="https://uvindex-sg.translate.goog/?_x_tr_sl=en&_x_tr_tl=ta&_x_tr_hl=en&_x_tr_pto=wapp" target="_blank" style="color: inherit !important">தமிழ்</a></div>
   <div id="app">
     <div class="" style="text-align: center;">
-      <div style="font-size: 2em; margin-left: -2em;">UV Index<span class="refreshicon" @click="refresh">&nbsp; &#10227;&#xFE0E;</span></div>
+      <div class="header-title">UV Index<span class="refreshicon" @click="refresh">&nbsp; &#10227;&#xFE0E;</span></div>
       <div class="pm25-number">{{ uvvalue }}</div>
       <div style="font-size: 1.5em; margin-bottom: 2em;">{{ getUvBand(uvvalue) }}</div>
     </div>
