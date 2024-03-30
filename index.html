@@ -884,7 +884,7 @@
       </details>
       <div class="box">
         <p class="box-header"><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Health advisory: What you can do</strong></p>
-        <div class="info-text">{{ getUvAdvisory(uvvalue) }}</div>
+        <div v-html="getUvAdvisory(uvvalue)" class="info-text" style="margin-bottom: -1em"></div>
       </div>
       <br />
       <!-- <div class="box">
@@ -1026,15 +1026,15 @@
             } else if (value === " ") {
               return 'Health advisory not available.';
             } else if (value <= 2 && value >= 0) {
-              return 'No protection needed. You can safely stay outside using minimal sun protection. Wear sunglasses on bright days. If you burn easily, cover up and use broad spectrum SPF 15+ sunscreen. Bright surfaces, sand, water, will increase UV exposure.';
+              return '<ul><li>No protection needed. You can safely stay outside using minimal sun protection.</li><li>Wear sunglasses on bright days.</li><li>If you burn easily, cover up and use broad spectrum SPF 15+ sunscreen.</li><li>Bright surfaces, sand, water, will increase UV exposure.</li></ul>';
             } else if (value <= 5) {
-              return 'Stay in shade near midday when the sun is strongest. If outdoors, wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 50+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, will increase UV exposure.';
+              return '<ul><li>Stay in shade near midday when the sun is strongest.</li><li>If outdoors, wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses.</li><li>Generously apply broad spectrum SPF 50+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating.</li><li>Bright surfaces, such as sand, water, will increase UV exposure.</li></ul>';
             } else if (value <= 7) {
-              return 'Reduce time in the sun between 10am and 4pm. If outdoors, seek shade and wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 50+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, will increase UV exposure.';
+              return '<ul><li>Reduce time in the sun between 10am and 4pm.</li><li>If outdoors, seek shade and wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses.</li><li>Generously apply broad spectrum SPF 50+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating.</li><li>Bright surfaces, such as sand, water, will increase UV exposure.</li></ul>';
             } else if (value <= 10) {
-              return 'Minimize sun exposure between 10am and 4pm. If outdoors, seek shade and wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 50+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, will increase UV exposure.';
+              return '<ul><li>Minimize sun exposure between 10am and 4pm.</li><li>If outdoors, seek shade and wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses.</li><li>Generously apply broad spectrum SPF 50+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating.</li><li>Bright surfaces, such as sand, water, will increase UV exposure.</li></ul>';
             } else if (value >= 11) {
-              return 'Try to avoid sun exposure between 10am and 4pm. If outdoors, seek shade and wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses. Generously apply broad spectrum SPF 50+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating. Bright surfaces, such as sand, water, will increase UV exposure.';
+              return '<ul><li>Try to avoid sun exposure between 10am and 4pm.</li><li>If outdoors, seek shade and wear sun-protective clothing, a wide-brimmed hat, and UV-blocking sunglasses.</li><li>Generously apply broad spectrum SPF 50+ sunscreen every 1.5 hours, even on cloudy days, and after swimming or sweating.</li><li>Bright surfaces, such as sand, water, will increase UV exposure.</li></ul>';
             } else {
               return 'Health advisory not available.';
             }
