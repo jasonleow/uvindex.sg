@@ -832,7 +832,7 @@
       <div class="" style="text-align: center;">
         <div class="header-title">UV Index<span class="refreshicon" @click="refresh">&nbsp; &#10227;&#xFE0E;</span></div>
         <div class="pm25-number">{{ uvvalue }}</div>
-        <div style="font-size: 2em; margin-bottom: 2em;">{{ getUvBand(uvvalue) }}</div>
+        <div v-html="getUvBand(uvvalue)" style="font-size: 2em; margin-bottom: 2em; line-height: 1.5"></div>
         <!-- <div class="progress gradient-bk">
           <div class="incomplete" :style="{ width: setProgressBar(uvvalue) }"></div>
           <span>{{ uvvalue }} / 11</span>
@@ -995,19 +995,18 @@
             } else if (value === " ") {
               return 'UV Index exposure category not available.';
             } else if (value <= 2 && value >= 0) {
-              return 'Low';
+              return 'Low<br />⛅️😎';
             } else if (value <= 5) {
-              return 'Moderate';
+              return 'Moderate<br />☀️😅';
             } else if (value <= 7) {
-              return 'High';
+              return 'High<br />🌡😥';
             } else if (value <= 10) {
-              return 'Very high';
+              return 'Very high<br />🔥😵';
             } else if (value >= 11) {
-              return 'Extreme';
+              return 'Extreme<br />👿💀';
             } else {
               return 'UV Index exposure category not available.';
             }
-            console.log('uv value', value)
           },
           getUvAdvisory(value) {
             if (value === '') {
