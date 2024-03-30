@@ -426,6 +426,7 @@
         position: relative;
         margin: 1em auto;
         background-color: #eee;
+        cursor: pointer;
       }
 
       .progress-bar {
@@ -455,6 +456,10 @@
         font-size: 14px;
         font-weight: bold;
         color: #333;
+      }
+
+      details summary:hover {
+        cursor: pointer;
       }
 
       .index-text {
@@ -837,7 +842,7 @@
           <div class="incomplete" :style="{ width: setProgressBar(uvvalue) }"></div>
           <span>{{ uvvalue }} / 11</span>
         </div> -->
-        <div class="progress-container">
+        <div id="progressBar" class="progress-container">
           <div class="progress-bar">
             <div id="segment00" class="segment">0</div>
             <div id="segment01" class="segment">1</div>
@@ -855,8 +860,8 @@
           <!-- <div class="progress-value">{{ uvvalue }} / 11</div> -->
         </div>
       </div>
-      <details class="no-bullets" style="margin-bottom: 1.2em;">
-        <summary class="time-box">Updated hourly at {{ uvtime }}.<br />Source: data.gov.sg <span style="display: inline-block; vertical-align: middle;"><svg :fill="getSvgFillColor(uvvalue)" width="13px" height="13px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+      <details id="infoText" class="no-bullets" style="margin-bottom: 1.2em;">
+        <summary id="updatedAt" class="time-box">Updated hourly at {{ uvtime }}.<br />Source: data.gov.sg <span style="display: inline-block; vertical-align: middle;"><svg :fill="getSvgFillColor(uvvalue)" width="13px" height="13px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
               <path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z" />
             </svg></span></summary>
         <div class="box">
@@ -873,6 +878,10 @@
           </div>
         </div>
       </details>
+      <div class="pulse-group">
+        <div class="pulse-circle"></div>
+        <img class="pulse-hand" alt="click here pointer hand" src="https://i.ibb.co/KWQPtVJ/double-tap-60px.png" />
+      </div>
       <div class="box">
         <p class="box-header"><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Health advisory: What you can do</strong></p>
         <div class="info-text">{{ getUvAdvisory(uvvalue) }}</div>
@@ -943,6 +952,7 @@
           this.getUvAdvisory();
           //this.setProgressBar();
           this.setProgressBarSegments();
+          this.openDropdown();
         },
         updated() {},
         methods: {
@@ -970,7 +980,9 @@
                 this.uvtime = this.getLocaleTimestamp(items.index[0].timestamp)
                 //console.log("psi items.update_timestamp", items.update_timestamp)
                 //console.log("this.psitime", this.psitime)
-                this.showApp = true
+                setTimeout(() => {
+                  this.showApp = true
+                }, 200);
               })
               .catch(error => {
                 console.error('Error fetching data:', error);
@@ -1293,6 +1305,37 @@
             setTimeout(function() {
               document.body.classList.remove('fade-out-in')
             }, 1000);
+          },
+          /* openDropdown() {
+          	const summary = document.getElementById('updatedAt');
+            const details = document.getElementById('infoText');
+            const progressBar = document.getElementById('progressBar');
+            summary.addEventListener('mouseenter', () => {
+              details.open = true;
+            });
+            progressBar.addEventListener('mouseenter', () => {
+              details.open = true;
+            });
+            summary.addEventListener('mouseleave', () => {
+              details.open = false;
+            });
+          }, */
+          openDropdown() {
+            const summary = document.getElementById('updatedAt');
+            const details = document.getElementById('infoText');
+            const progressBar = document.getElementById('progressBar');
+
+            let isOpen = false;
+
+            progressBar.addEventListener('click', () => {
+              if (!isOpen) {
+                details.open = true;
+                isOpen = true;
+              } else {
+                details.open = false;
+                isOpen = false;
+              }
+            });
           },
         }
       });
