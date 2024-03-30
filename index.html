@@ -618,7 +618,7 @@
 
       .pulse-group {
         position: relative;
-        bottom: 60px;
+        bottom: -70px;
         left: 0;
         width: 400px;
         margin: 0 auto 1em auto;
@@ -808,7 +808,7 @@
         }
 
         .pulse-group {
-          bottom: 50px;
+          bottom: -75px;
           left: -13px;
           width: 350px;
         }
@@ -842,6 +842,10 @@
           <div class="incomplete" :style="{ width: setProgressBar(uvvalue) }"></div>
           <span>{{ uvvalue }} / 11</span>
         </div> -->
+        <div class="pulse-group">
+          <div class="pulse-circle"></div>
+          <img class="pulse-hand" alt="click here pointer hand" src="https://i.ibb.co/KWQPtVJ/double-tap-60px.png" />
+        </div>
         <div id="progressBar" class="progress-container">
           <div class="progress-bar">
             <div id="segment00" class="segment">0</div>
@@ -878,10 +882,6 @@
           </div>
         </div>
       </details>
-      <div class="pulse-group">
-        <div class="pulse-circle"></div>
-        <img class="pulse-hand" alt="click here pointer hand" src="https://i.ibb.co/KWQPtVJ/double-tap-60px.png" />
-      </div>
       <div class="box">
         <p class="box-header"><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Health advisory: What you can do</strong></p>
         <div class="info-text">{{ getUvAdvisory(uvvalue) }}</div>
