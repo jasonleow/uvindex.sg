@@ -1301,6 +1301,10 @@
           }, */
           refresh() {
             this.fetchUvData();
+            this.changeBackgroundColor();
+            this.getUvBand();
+            this.getUvAdvisory();
+            this.setProgressBarSegments();
             document.body.classList.add('fade-out-in')
             setTimeout(function() {
               document.body.classList.remove('fade-out-in')
