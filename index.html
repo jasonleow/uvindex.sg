@@ -967,7 +967,7 @@
               }
             });
           },
-          /* fetchUvData() {
+          fetchUvData() {
             // https://www.nea.gov.sg/api/ultraviolet/getall
             // https://corsproxy.io/?https://www.nea.gov.sg/api/ultraviolet/getall
             fetch('https://api.data.gov.sg/v1/environment/uv-index')
@@ -989,7 +989,7 @@
                 console.error('Error fetching data:', error);
                 this.uvApiDown = true;
               });
-          }, 
+          },
           getLocaleTimestamp(t) {
             const localDate = new Date(t).toLocaleDateString("en-SG", {
               day: "2-digit",
@@ -1001,8 +1001,8 @@
             });
             // console.log(localDate);
             return localDate;
-          }, */
-          fetchUvData() {
+          },
+          /* fetchUvData() {
             // https://www.nea.gov.sg/api/ultraviolet/getall
             //const currentEpochTime = Math.floor(Date.now() / 1000);
             //console.log(currentEpochTime); // Output: 1681902123 (the current epoch time)
@@ -1043,7 +1043,7 @@
             });
             // console.log(localDate);
             return localDate;
-          },
+          }, */
           getUvBand(value) {
             if (value === '') {
               return 'UV Index exposure category not available.';
