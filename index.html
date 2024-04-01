@@ -967,8 +967,9 @@
               }
             });
           },
-          fetchUvData() {
+          /* fetchUvData() {
             // https://www.nea.gov.sg/api/ultraviolet/getall
+            // https://corsproxy.io/?https://www.nea.gov.sg/api/ultraviolet/getall
             fetch('https://api.data.gov.sg/v1/environment/uv-index')
               .then(response => response.json())
               .then(data => {
@@ -988,7 +989,7 @@
                 console.error('Error fetching data:', error);
                 this.uvApiDown = true;
               });
-          },
+          }, 
           getLocaleTimestamp(t) {
             const localDate = new Date(t).toLocaleDateString("en-SG", {
               day: "2-digit",
@@ -997,6 +998,48 @@
               hour: "2-digit",
               minute: "2-digit",
               hour12: true
+            });
+            // console.log(localDate);
+            return localDate;
+          }, */
+          fetchUvData() {
+            // https://www.nea.gov.sg/api/ultraviolet/getall
+            //const currentEpochTime = Math.floor(Date.now() / 1000);
+            //console.log(currentEpochTime); // Output: 1681902123 (the current epoch time)
+            //fetch(`https://corsproxy.io/?https://www.nea.gov.sg/api/ultraviolet/getall?t=${currentEpochTime}`)
+            // https://corsproxy.io/?https://www.nea.gov.sg/api/ultraviolet/getall
+            //https://raw.githubusercontent.com/jasonleow/uvindexsg-flatdata/main/uvindex-every-15min.json
+            fetch('https://raw.githubusercontent.com/jasonleow/uvindexsg-flatdata/main/uvindex-every-15min.json')
+              .then(response => response.json())
+              .then(data => {
+                const items = data.CurrentUV;
+                //console.log("uv items", data);
+                this.uvvalue = items.value;
+                //this.uvvalue = 0;
+                //console.log("this.uvvalue", this.uvvalue)
+                this.uvdate = this.getLocaleTimestamp(items.date)
+                this.uvhour = items.hour
+                this.uvtime = this.uvdate + ', ' + this.uvhour
+                //console.log("uvtime", this.uvtime);
+                //console.log("psi items.update_timestamp", items.update_timestamp)
+                //console.log("this.psitime", this.psitime)
+                setTimeout(() => {
+                  this.showApp = true
+                }, 200);
+              })
+              .catch(error => {
+                console.error('Error fetching data:', error);
+                this.uvApiDown = true;
+              });
+          },
+          getLocaleTimestamp(t) {
+            const localDate = new Date(t).toLocaleDateString("en-SG", {
+              day: "2-digit",
+              month: "short",
+              year: "numeric",
+              //hour: "2-digit",
+              //minute: "2-digit",
+              //hour12: true
             });
             // console.log(localDate);
             return localDate;
