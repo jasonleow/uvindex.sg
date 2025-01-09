@@ -968,28 +968,29 @@
             });
           },
           fetchUvData() {
-            // https://www.nea.gov.sg/api/ultraviolet/getall
-            // https://corsproxy.io/?https://www.nea.gov.sg/api/ultraviolet/getall
-            fetch('https://api-open.data.gov.sg/v2/real-time/api/uv')
-              .then(response => response.json())
-              .then(data => {
-                const items = data.items[0];
-                // console.log("uv items", items);
-                this.uvvalue = items.index[0].value;
-                //this.uvvalue = 0;
-                //console.log("this.uvvalue", this.uvvalue)
-                this.uvtime = this.getLocaleTimestamp(items.index[0].timestamp)
-                //console.log("psi items.update_timestamp", items.update_timestamp)
-                //console.log("this.psitime", this.psitime)
-                setTimeout(() => {
-                  this.showApp = true
-                }, 200);
-              })
-              .catch(error => {
-                console.error('Error fetching data:', error);
-                this.uvApiDown = true;
-              });
-          },
+	  // https://www.nea.gov.sg/api/ultraviolet/getall
+	  // https://corsproxy.io/?https://www.nea.gov.sg/api/ultraviolet/getall
+	  fetch('https://api-open.data.gov.sg/v2/real-time/api/uv')
+	    .then(response => response.json())
+	    .then(data => {
+	      const records = data.data.records[0];
+	      // console.log("uv records", records);
+	      this.uvvalue = records.index[0].value;
+	      //this.uvvalue = 0;
+	      //console.log("this.uvvalue", this.uvvalue)
+	      this.uvtime = this.getLocaleTimestamp(records.updatedTimestamp)
+	      //console.log("psi items.update_timestamp", records.updatedTimestamp)
+	      //console.log("this.psitime", this.psitime)
+	      setTimeout(() => {
+		this.showApp = true
+	      }, 200);
+	    })
+	    .catch(error => {
+	      console.error('Error fetching data:', error);
+	      this.uvApiDown = true;
+	    });
+	},
+
           getLocaleTimestamp(t) {
             const localDate = new Date(t).toLocaleDateString("en-SG", {
               day: "2-digit",
