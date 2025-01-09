@@ -970,7 +970,7 @@
           fetchUvData() {
             // https://www.nea.gov.sg/api/ultraviolet/getall
             // https://corsproxy.io/?https://www.nea.gov.sg/api/ultraviolet/getall
-            fetch('https://api.data.gov.sg/v1/environment/uv-index')
+            fetch('https://api-open.data.gov.sg/v2/real-time/api/uv')
               .then(response => response.json())
               .then(data => {
                 const items = data.items[0];
